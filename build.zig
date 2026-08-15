@@ -15,5 +15,15 @@
 const std = @import("std");
 
 pub fn build(b: *std.Build) void {
-    _ = b;
+    const revision = b.option(usize, "revision", "Protocol Revision") orelse 6;
+    const no_pointers = b.option(bool, "no_pointers", "Disable pointers") orelse false;
+
+    const options = b.addOptions();
+    options.addOption(usize, "revision", revision);
+    options.addOption(bool, "no_pointers", no_pointers);
+
+    const module = b.addModule("limine", .{
+        .root_source_file = b.path("src/root.zig"),
+    });
+    module.addImport("options", options.createModule());
 }
