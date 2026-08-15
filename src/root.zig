@@ -928,5 +928,5 @@ comptime {
         @compileError("Limine API revision must be 6 or lower");
     }
 
-    std.testing.refAllDeclsRecursive(@This());
+    std.testing.refAllDecls(@This());
 }
