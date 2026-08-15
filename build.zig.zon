@@ -1,7 +1,7 @@
 .{
     .name = .limine,
     .version = "0.0.0",
-    .fingerprint = 0x123a773186944025, // Changing this has security and trust implications.
+    .fingerprint = 0x123a773126566ef5, // Changing this has security and trust implications.
     .minimum_zig_version = "0.17.0-dev.1745+ac8a8d0c5",
     .dependencies = .{},
     .paths = .{
