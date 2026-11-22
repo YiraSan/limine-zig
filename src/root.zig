@@ -349,14 +349,14 @@ pub const PagingModeRequest = extern struct {
 
 pub const GotoAddress = *const fn (*MpInfo) callconv(.c) void;
 
-pub const MpRequestFlags = packed struct(u64) {
+pub const MpRequestFlags = bitpack struct(u64) {
     /// Enable x2APIC, if possible. x86-64 only; ignored on other archs.
     x86_64_x2apic: bool = false,
     reserved: u63 = 0,
 };
 
 const MpResponseFlags = switch (arch) {
-    .x86_64 => packed struct(u32) {
+    .x86_64 => bitpack struct(u32) {
         /// Set by the bootloader if x2APIC was successfully enabled.
         x86_64_x2apic: bool = false,
         reserved: u31 = 0,
@@ -571,7 +571,7 @@ pub const ExecutableFileRequest = extern struct {
 
 // Module
 
-pub const InternalModuleFlag = packed struct(u64) {
+pub const InternalModuleFlag = bitpack struct(u64) {
     required: bool,
     compressed: bool,
     reserved: u62 = 0,
